@@ -1,6 +1,6 @@
 package solution;
 
-import junit.framework.ComparisonFailure;
+import org.junit.ComparisonFailure;
 import provided.*;
 
 import java.lang.reflect.Constructor;
@@ -121,7 +121,7 @@ public class StoryTesterImpl implements StoryTester {
                     met.invoke(instanceTestClass, arg);
                 } catch (InvocationTargetException e) {
                     //the only method that can throw is Then annotation.
-                    if (e.getTargetException().getClass().equals(ComparisonFailure.class)) {
+                    if (e.getTargetException().getClass().getSimpleName().equals(ComparisonFailure.class.getSimpleName())) {
                         ComparisonFailure cf = (ComparisonFailure) e.getTargetException();
                         String expected = cf.getExpected(); // <- this is AMAZING!
                         String fail = cf.getActual(); // <- this is AMAZING!
