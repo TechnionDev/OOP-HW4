@@ -131,7 +131,7 @@ public class StoryTesterImpl implements StoryTester {
                 return;
             }
         }
-        if (testClass.getSuperclass() == null) {
+        if (testClass.getSuperclass() == null || testClass.getSuperclass().getSimpleName().equals("Object")) {
             throw annotation.equals("Given") ? new GivenNotFoundException() : annotation.equals("When") ? new WhenNotFoundException() : new ThenNotFoundException();
         }
         executeSentence(sentence, annotation, methodName, arg, testClass.getSuperclass(), instanceTestClass);
